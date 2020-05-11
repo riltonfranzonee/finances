@@ -1,7 +1,13 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+import { Link } from 'react-router-dom';
 
 interface ContainerProps {
   size?: 'small' | 'large';
+}
+
+interface NavLinkProps {
+  active: boolean;
 }
 
 export const Container = styled.div<ContainerProps>`
@@ -17,6 +23,8 @@ export const Container = styled.div<ContainerProps>`
     justify-content: space-between;
 
     nav {
+      display: flex;
+
       a {
         color: #fff;
         text-decoration: none;
@@ -31,6 +39,35 @@ export const Container = styled.div<ContainerProps>`
           opacity: 0.6;
         }
       }
+    }
+  }
+`;
+
+export const NavWrapper = styled.div<NavLinkProps>`
+  border-bottom: 2px solid transparent;
+
+  & + div {
+    margin-left: 32px;
+  }
+
+  ${props =>
+    props.active &&
+    css`
+      border-bottom: 2px solid #ff872c;
+    `}
+
+  a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    transition: opacity 0.2s;
+    border: none;
+    & + a {
+      margin-left: 32px;
+    }
+
+    &:hover {
+      opacity: 0.6;
     }
   }
 `;
